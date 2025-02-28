@@ -77,10 +77,10 @@ True && a    = a
 
 -- 2
 exOr :: Bool -> Bool -> Bool
-exOr True True = False
+exOr False False = False
 exOr False True = True
 exOr True False = True
-exOr False False = False
+exOr True True = False
 
 -- 3
 ifThenElse :: Bool -> Int -> Int -> Int
@@ -89,18 +89,12 @@ ifThenElse False _ b = b
 
 -- 4
 daysInMonth :: Int -> Int
-daysInMonth 1 = 31
 daysInMonth 2 = 28
-daysInMonth 3 = 31
 daysInMonth 4 = 30
-daysInMonth 5 = 31
 daysInMonth 6 = 30
-daysInMonth 7 = 31
-daysInMonth 8 = 31
 daysInMonth 9 = 30
-daysInMonth 10 = 31
 daysInMonth 11 = 30
-daysInMonth 12 = 31
+_ = 31
 
 validDate :: Int -> Int -> Bool
 validDate day month = day <= daysInMonth month
@@ -150,3 +144,4 @@ findRoot n s
  | otherwise = findRoot n (s - 1)
 
 -- 11
+-- Added solutions with guards to questions 5 & 6
