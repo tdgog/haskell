@@ -1,7 +1,7 @@
 -- We don't import '||' from the prelude, so that we can
 -- define our own version
 
-import Prelude hiding ((||), (&&))
+import Prelude hiding ((||), (&&), gcd)
 import GHC.Num (Integer(IN))
 
 -- The following line declares the || operator (which we are about to
@@ -106,19 +106,27 @@ validDate :: Int -> Int -> Bool
 validDate day month = day <= daysInMonth month
 
 -- 5
+-- sumNumbers :: Int -> Int
+-- sumNumbers 0 = 0
+-- sumNumbers n = n + sumNumbers (n - 1)
 sumNumbers :: Int -> Int
-sumNumbers 0 = 0
-sumNumbers n = n + sumNumbers (n - 1)
+sumNumbers n
+  | n == 0 = 0
+  | n > 0 = n + sumNumbers (n - 1)
 
 -- 6
+-- sumSquares :: Int -> Int
+-- sumSquares 1 = 1
+-- sumSquares n = n^2 + sumSquares (n - 1) 
 sumSquares :: Int -> Int
-sumSquares 1 = 1
-sumSquares n = n^2 + sumSquares (n - 1) 
+sumSquares n
+  | n == 1 = 1
+  | n > 1 = n^2 + sumSquares (n - 1)
 
 -- 7
 power :: Int -> Int -> Int
 power _ 0 = 1
-power n p = n * (power n (p - 1))
+power n p = n * power n (p - 1)
 
 -- 8
 sumFromTo :: Int -> Int -> Int
@@ -127,3 +135,18 @@ sumFromTo n max
  | otherwise = n + sumFromTo (n + 1) max
 
 -- 9
+gcd :: Int -> Int -> Int
+gcd a b
+ | a == b = a
+ | otherwise = gcd (abs (a - b)) (min a b)
+
+-- 10
+intSquareRoot :: Int -> Int
+intSquareRoot n = findRoot n n
+
+findRoot :: Int -> Int -> Int
+findRoot n s
+ | s * s <= n = s
+ | otherwise = findRoot n (s - 1)
+
+-- 11
